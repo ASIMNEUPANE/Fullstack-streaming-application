@@ -70,6 +70,7 @@ app.post("/upload", upload.single('file'), function(req, res){
   const ffmpegCommand = `ffmpeg -i ${videoPath} -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${outputPath}/segment%03d.ts" -start_number 0 ${hlsPath}
 
 `;
+//acc is a codex a packager which merge our video , audio , subtitle
 
   // no queue because of POC, not to be used in production
   exec(ffmpegCommand, (error, stdout, stderr) => {
@@ -86,7 +87,6 @@ app.post("/upload", upload.single('file'), function(req, res){
       lessonId: lessonId
     })
   })
-//acc is a codex a packager which merge our video , audio , subtitle
 
 })
 
